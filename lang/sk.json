@@ -1,0 +1,13 @@
+{
+    "student": "Študent",
+    "teacher": "Učiteľ",
+    "name": "Meno",
+    "surname": "Priezvisko",
+    "email": "Email",
+    "password": "Heslo",
+    "confirm_password": "Potvrď heslo",
+    "confirm": "Potvrď",
+    "register": "Registrovať",
+    "already_registered?": "Už ste zaregistrovaní?",
+    "role": "Rola"
+}
