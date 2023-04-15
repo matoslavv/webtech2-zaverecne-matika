@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LocalizationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+Route::get('/change-locale/{locale}', [LocalizationController::class, 'changeLocale'])->name('change.locale');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,10 +27,12 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'locale'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
 
 require __DIR__.'/auth.php';
