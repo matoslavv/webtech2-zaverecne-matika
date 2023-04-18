@@ -12,5 +12,12 @@
     "The surname field is required.": "Pole je povinné vyplniť",
     "login": "Prihlásiť sa",
     "register": "Registrovať sa",
-    "remember_me": "Zapamätať si ma"
+    "remember_me": "Zapamätať si ma",
+    "welcome": "Vitaj",
+    "generate-tasks": "Chceš vygenerovať príklady na riešenie?",
+    "generate-button": "Generovať úlohy",
+    "view": "Zobraziť",
+    "tasks": "Úlohy",
+    "progress": "Neodovzdané",
+    "submitted": "Odovzdané"
 }

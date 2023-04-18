@@ -12,5 +12,12 @@
     "The surname field is required.": "Field is required",
     "login": "Log in",
     "register": "Register",
-    "remember_me": "Remember me"
+    "remember_me": "Remember me",
+    "welcome": "Welcome",
+    "generate-tasks": "Do you want to generate math problems to solve?",
+    "generate-button": "Generate problems",
+    "view": "Show",
+    "tasks": "Tasks",
+    "progress": "In progress",
+    "submitted": "Submitted"
 }

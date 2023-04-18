@@ -1,17 +1,40 @@
+@php
+    $tasks = array(
+        (object) [
+            "id" => 1,
+            "submitted" => true,
+            "link" => "testovac.com"
+        ],
+        (object) [
+            "id" => 2,
+            "submitted" => false,
+            "link" => "matusmokranhehehe.com"
+        ]
+    );
+@endphp
+
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
+        <h2 class="mt-3 mb-5">
+            {{ __('welcome') . " " . Auth::user()->name . " " . Auth::user()->surname }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
-                </div>
+    @if (Auth::user()->role == "Student")
+        <div>
+            <h4 class='dashboard-title d-inline-block'>{{__('generate-tasks')}}</h4>
+            <x-button>{{__('generate-button')}}</x-button>
+        </div>
+
+        <div class="mt-4">
+            <h4 class='dashboard-title'>{{__('tasks')}}</h4>
+            <div class="row">
+                @foreach ($tasks as $task)
+                    <x-problem-card :title="$task->id" :submitted="$task->submitted" :link="$task->link"></x-problem-card>
+                @endforeach
             </div>
         </div>
-    </div>
+    @endif
+
+
 </x-app-layout>
