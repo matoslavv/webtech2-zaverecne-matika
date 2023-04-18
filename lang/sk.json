@@ -9,5 +9,8 @@
     "confirm": "Potvrď",
     "register": "Registrovať",
     "already_registered?": "Už ste zaregistrovaní?",
-    "role": "Rola"
+    "role": "Rola",
+    "The surname field is required.": "Pole je povinné vyplniť",
+    "login": "Prihlásiť sa",
+    "remember_me": "Zapamätať si ma"
 }

@@ -1,7 +1,10 @@
-<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-    @foreach (config('app.supported_locales') as $locale)
-        {{-- @if ($locale != App::getLocale()) --}}
-            <a class="dropdown-item" href="{{ route('change.locale', $locale) }}"> {{$locale}}</a>
-        {{-- @endif --}}
-    @endforeach
-</div>
+<x-dropdown trigger="{{strtoupper(app()->getLocale())}}">
+    <x-slot name="content">
+        @foreach (config('app.supported_locales') as $locale)
+            <x-dropdown-link :href="route('change.locale', $locale)">
+            {{strtoupper($locale)}}
+            </x-dropdown-link>
+        @endforeach
+    </x-slot>
+</x-dropdown>
+
