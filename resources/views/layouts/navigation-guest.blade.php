@@ -9,12 +9,12 @@
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
             <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
-                {{ __('Login') }}
+                {{ __('login') }}
             </x-nav-link>
         </li>
         <li class="nav-item">
             <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
-                {{ __('Register') }}
+                {{ __('register') }}
             </x-nav-link>
         </li>
         <li>

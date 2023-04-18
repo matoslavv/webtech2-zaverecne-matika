@@ -1,14 +1,16 @@
 {
     "student": "Student",
     "teacher": "Teacher",
+    "name": "Name",
+    "surname": "Surname",
     "email": "Email",
     "password": "Password",
     "confirm_password": "Confirm password",
     "confirm": "Confirm",
-    "register": "Register",
     "already_registered?": "Have you already registered?",
     "role": "Role",
     "The surname field is required.": "Field is required",
     "login": "Log in",
+    "register": "Register",
     "remember_me": "Remember me"
 }
