@@ -5,6 +5,8 @@ use App\Http\Controllers\LocalizationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LatexController;
 
+use App\Models\User;
+use App\Models\Latex;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +27,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $users = User::where('role', 'student')->get();
+    $latexFiles = Latex::all();
+
+    return view('dashboard', ['users' => $users, 'latexFiles' => $latexFiles]);
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware(['auth', 'locale'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -39,6 +51,8 @@ Route::middleware(['auth', 'locale'])->group(function () {
 
 Route::get('/latex-upload', [LatexController::class, 'uploadPage'])->name('latex.upload');
 Route::post('/upload', [LatexController::class, 'upload'])->name('latex.upload.post');
+Route::post('/exercise_sets', 'ExerciseSetController@store')->name('exercise_sets.store');
+
 
 
 require __DIR__.'/auth.php';
