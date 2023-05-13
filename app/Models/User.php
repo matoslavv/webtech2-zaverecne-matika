@@ -56,4 +56,9 @@ class User extends Authenticatable
     {
         return $this->role === self::ROLE_STUDENT;
     }
+
+    public function exerciseSets()
+    {
+        return $this->hasMany(ExerciseSet::class);
+    }
 }

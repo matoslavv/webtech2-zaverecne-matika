@@ -21,7 +21,7 @@
     </x-slot>
 
     @if (Auth::user()->role == "Student")
-        <div>
+        <!-- <div>
             <h4 class='dashboard-title d-inline-block'>{{__('generate-tasks')}}</h4>
             <x-button>{{__('generate-button')}}</x-button>
         </div>
@@ -33,7 +33,44 @@
                     <x-problem-card :title="$task->id" :submitted="$task->submitted" :link="$task->link"></x-problem-card>
                 @endforeach
             </div>
+        </div> -->
+        <div>
+            <h4 class="dashboard-title d-inline-block">{{ __('generate-tasks') }}</h4>
+            <x-button>{{ __('generate-button') }}</x-button>
         </div>
+
+        <div class="mt-4">
+            <h4 class="dashboard-title">{{ __('tasks') }}</h4>
+            <div class="row">
+                @foreach ($exerciseSets as $exerciseSet)
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $exerciseSet->name }}</h5>
+                                <p class="card-text">{{ __('From') }}: {{ $exerciseSet->from_date }}</p>
+                                <p class="card-text">{{ __('To') }}: {{ $exerciseSet->to_date }}</p>
+                                <form action="{{ route('exercise_files.store') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="exercise_set_id" value="{{ $exerciseSet->id }}">
+                                    <div class="form-group">
+                                        <label for="file">Choose Files:</label>
+                                        @foreach ($exerciseSetFiles[$exerciseSet->id] as $file)
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="file[]" value="{{ $file->id }}">
+                                                <label class="form-check-label" for="file">{{ $file->name }}</label>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
     @elseif (Auth::user()->role == "Teacher")
     <div class="container">
         <div class="row">
@@ -62,6 +99,7 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="latex_files[]" value="{{ $latexFile->id }}" id="latex_file_{{ $latexFile->id }}">
                                 <label class="form-check-label" for="latex_file_{{ $latexFile->id }}">{{ $latexFile->name }}</label>
+                                <input type="number" class="form-control" name="latex_file_points[{{ $latexFile->id }}]" placeholder="Max Points" min="0" step="1">
                             </div>
                         @endforeach
                     </div>
