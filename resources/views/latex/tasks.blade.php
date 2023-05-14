@@ -12,6 +12,9 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <p class="card-text">{{ $task->task }}</p>
+                    @if ($task->image_name)
+                        <img src="{{ asset('storage/images/' . $task->image_name) }}" alt="Task Image" class="img-fluid">
+                    @endif
                     <form action="{{ route('submit_answer') }}" method="POST">
                         @csrf
                         <input type="hidden" name="task_id" value="{{ $task->id }}">

@@ -22,7 +22,7 @@ class CreateTasksTable extends Migration
             $table->text('task');
             $table->text('solution');
             $table->timestamps();
-
+            $table->string('image_name')->nullable(); 
             $table->foreign('latex_id')->references('id')->on('latex')->onDelete('cascade');
         });
     }

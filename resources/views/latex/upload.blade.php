@@ -63,7 +63,15 @@
     \begin{equation*}
         y(t)=\left[ \dfrac{3}{4}-\dfrac{3}{4}e^{-\frac{4}{5}(t-7)}-\dfrac{3}{5}(t-7)e^{-\frac{4}{5}(t-7)} \right] \eta(t-7)
     \end{equation*}
-\
+
+    \begin{equation*}
+        Nájdite prenosovú funkciu F(s)=\dfrac{Y(s)}{W(s)} pre systém opísaný blokovou schémou: \\ 
+    \end{equation*}
+
+    \begin{equation*}
+        Nájdite prenosovú funkciu F(s)=\dfrac{Y(s)}{W(s)} pre systém opísaný blokovou schémou: \\ 
+    \end{equation*}
+    
 
     </div>
 </body>

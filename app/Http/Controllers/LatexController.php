@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\matches;
+
 class LatexController extends Controller
 {
     public function uploadPage()
@@ -22,17 +24,23 @@ class LatexController extends Controller
 
         // Check if the uploaded file is a JPG image
         if ($file->getClientOriginalExtension() === 'jpg') {
+            // Get the original file name
+            $originalFileName = $file->getClientOriginalName();
 
-            // Store the image file in the specified folder
-            $path = $file->store('images', 'local');
+            // Store the image file in the specified folder with the original file name
+            // $fileName = preg_replace('/^\d{14}/', '', $originalFileName);
+            $fileName = substr($originalFileName, 13);
+
+            $path = $file->storeAs('public/images', $fileName, 'local');
+
 
             // Save the original filename and image file path to the database
             // $uploadedFile = new Latex();
-            // $uploadedFile->original_filename = $file->getClientOriginalName();
+            // $uploadedFile->original_filename = $originalFileName;
             // $uploadedFile->image_path = $path;
             // $uploadedFile->save();
 
-            return response()->json(['success' => 'Image uploaded successfully.']);
+            return response()->json(['success' => 'File uploaded successfully.', 'taskContents' => $originalFileName]);
         }else{
             // Read the content of the file
             $content = $file->get();
@@ -51,12 +59,40 @@ class LatexController extends Controller
             
             // $content2 = str_replace([' ', "\n"], '', $content);
             // Extract the content between \begin{task} and \end{task}
-            $taskPattern = '/(begin{task})(.*?)(end{task})/s';
+            $taskPattern = '/(begin{task})(.*?)(\\\\end{task})/s';
             preg_match_all($taskPattern, $content, $taskMatches);
             $taskContents = $taskMatches[2];
+
+            $pattern = '/\\\\includegraphics{(.*?)}/'; // Pattern to match \includegraphics{...}
+            $filenames = array(); // Array to store the extracted filenames
+
+            // Replace \includegraphics{...} with an empty string and extract filenames
+            foreach ($taskContents as $index => $taskContent) {
+                $taskContent = preg_replace_callback($pattern, function($matches) use (&$filenames) {
+                    $filename = $matches[1]; // Extract the filename
+                    $filename = substr(strrchr($filename, '/'), 1);
+                    $filenames[] = $filename;
+                    return ''; // Replace with an empty string
+                }, $taskContent);
+            }
+            
+            $taskContents = preg_replace_callback($pattern, function($matches) use (&$filenames) {
+                return ''; // Replace with an empty string
+            }, $taskContents);
+
+            $taskContents = str_replace('$', '', $taskContents);
+
+            $equationTag = '\begin{equation*}';
+            $pattern = '/\\\\begin\{equation\*\}/';
+
+            foreach ($taskContents as $index => $taskContent) {
+                if (!preg_match($pattern, $taskContent)) {
+                    $taskContents[$index] = $equationTag . $taskContents[$index] . '\end{equation*}';
+                }
+            }
             
             // Extract the content between \begin{solution} and \end{solution}
-            $solutionPattern = '/(begin{solution})(.*?)(end{solution})/s';
+            $solutionPattern = '/(begin{solution})(.*?)(\\\\end{solution})/s';
             preg_match_all($solutionPattern, $content, $solutionMatches);
             $solutionContents = $solutionMatches[2]; 
 
@@ -81,10 +117,15 @@ class LatexController extends Controller
                 $task->section = $extractedText;
                 $task->task = $taskContent;
                 $task->solution = $solutionContents[$index];
+
+                if (isset($filenames[$index])) {
+                    $task->image_name = $filenames[$index]; // Set the extracted filename
+                }
+
                 $task->save();
             }
 
-            return response()->json(['success' => 'File uploaded successfully.', 'taskContents' => $taskMatches]);
+            return response()->json(['success' => 'File uploaded successfully.', 'taskContents' => $taskContents]);
         }
     }
 }
