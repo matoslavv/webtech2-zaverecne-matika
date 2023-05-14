@@ -44,19 +44,20 @@
             <div class="row">
                 @foreach ($exerciseSets as $exerciseSet)
                     <div class="col-md-4">
-                        <div class="card">
+                        <div class="card @if ($exerciseSet->state === 'open') border-success @else border-danger @endif">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $exerciseSet->name }}</h5>
                                 <p class="card-text">{{ __('From') }}: {{ $exerciseSet->from_date }}</p>
                                 <p class="card-text">{{ __('To') }}: {{ $exerciseSet->to_date }}</p>
-                                <form action="{{ route('exercise_files.store') }}" method="POST">
+
+                                <form action="{{ route('exercise_files.generate') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="exercise_set_id" value="{{ $exerciseSet->id }}">
                                     <div class="form-group">
                                         <label for="file">Choose Files:</label>
                                         @foreach ($exerciseSetFiles[$exerciseSet->id] as $file)
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="file[]" value="{{ $file->id }}">
+                                                <input class="form-check-input" type="checkbox" name="file[]" value="{{ $file->file_id }}">
                                                 <label class="form-check-label" for="file">{{ $file->name }}</label>
                                             </div>
                                         @endforeach

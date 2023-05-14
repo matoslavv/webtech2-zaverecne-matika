@@ -5,6 +5,7 @@ use App\Http\Controllers\LocalizationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LatexController;
 use App\Http\Controllers\ExerciseSetController;
+use App\Http\Controllers\ExerciseFileController;
 
 use App\Models\User;
 use App\Models\Latex;
@@ -62,13 +63,16 @@ Route::get('/dashboard', function () {
     $exerciseSetFiles = [];
     foreach ($exerciseSets as $exerciseSet) {
         $files = ExerciseSetFile::where('exercise_set_id', $exerciseSet->id)
-            ->join('latex', 'latex.id', '=', 'exercise_set_files.latex_file_id')
-            ->select('latex.name')
-            ->get();
+        ->join('latex', 'latex.id', '=', 'exercise_set_files.latex_file_id')
+        ->select('exercise_set_files.id', 'latex.id as file_id', 'latex.name')
+        ->get();
+    
         $exerciseSetFiles[$exerciseSet->id] = $files;
+
     }
 
     echo Auth::user()->id;
+    // var_dump( $files);
 
     return view('dashboard', compact('users', 'latexFiles', 'exerciseSets', 'exerciseSetFiles'));
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -88,7 +92,10 @@ Route::post('/upload', [LatexController::class, 'upload'])->name('latex.upload.p
 Route::post('/exercise_sets', [ExerciseSetController::class, 'store'])->name('exercise_sets.store');
 
 Route::get('/exercise-files/{id}', [ExerciseFileController::class, 'show'])->name('exercise_files.show');
-Route::post('/exercise_files', [ExerciseFileController::class, 'store'])->name('exercise_files.store');
+Route::post('/exercise_files/generate', [ExerciseFileController::class, 'generate'])->name('exercise_files.generate');
+Route::post('/submit-answer', [AnswerController::class, 'submitAnswer'])->name('submit_answer');
+
+
 
 
 

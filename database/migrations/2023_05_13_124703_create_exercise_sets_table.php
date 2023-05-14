@@ -19,13 +19,16 @@ class CreateExerciseSetsTable extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->date('from_date')->nullable();
             $table->date('to_date')->nullable();
+            $table->enum('state', ['closed', 'open'])->default('open');
+            $table->unsignedInteger('max_points')->nullable();
+            $table->unsignedInteger('points')->nullable();
             $table->timestamps();
         });
         
         Schema::create('exercise_set_files', function (Blueprint $table) {
             $table->id();
             $table->foreignId('exercise_set_id')->constrained('exercise_sets')->onDelete('cascade');
-            $table->foreignId('latex_file_id')->constrained('latex_files')->onDelete('cascade');
+            $table->foreignId('latex_file_id')->constrained('latex')->onDelete('cascade');
             $table->integer('max_points')->nullable();
             $table->timestamps();
         });

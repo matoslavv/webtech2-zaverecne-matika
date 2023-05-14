@@ -17,7 +17,11 @@ class ExerciseSet extends Model
         'from_date',
         'to_date',
         'name',
+        'state',
+        'max_points',
+        'points',
     ];
+    
 
     /**
      * Get the user associated with the exercise set.

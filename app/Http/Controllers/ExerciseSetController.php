@@ -25,12 +25,25 @@ class ExerciseSetController extends Controller
         var_dump($userId, $selectedLatexFiles, $latexFilePoints, $fromDate, $toDate);
               
 
+        // Get the current date
+        $currentDate = date('Y-m-d');
+
+        // Determine the state
+        if ($fromDate === null && $toDate === null) {
+            $state = 'open';
+        } elseif ($fromDate !== null && $toDate !== null && $currentDate >= $fromDate && $currentDate <= $toDate) {
+            $state = 'open';
+        } else {
+            $state = 'closed';
+        }
+
         // Create an exercise set record
         $exerciseSet = ExerciseSet::create([
             'user_id' => $userId,
             'from_date' => $fromDate,
             'to_date' => $toDate,
             'name' => 'Exercise Set Name', 
+            'state' => $state,
         ]);
 
 
