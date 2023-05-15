@@ -33,5 +33,7 @@
     "From": "From",
     "To": "To",
     "generate": "Generate",
-    "select-latex-file": "Select LaTeX file"
+    "select-latex-file": "Select LaTeX file",
+    "max-points": "Maximum points",
+    "exercise-id": "Exercise set ID"
 }
