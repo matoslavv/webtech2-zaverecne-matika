@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Latex; // Replace "File" with your actual model name
-use App\Models\Task; 
+use App\Models\Task;
 use Illuminate\Support\Str;
 
 
@@ -56,7 +56,7 @@ class LatexController extends Controller
             $uploadedFile->save();
 
             $content33 = "\\begin aa \\end";
-            
+
             // $content2 = str_replace([' ', "\n"], '', $content);
             // Extract the content between \begin{task} and \end{task}
             $taskPattern = '/(begin{task})(.*?)(\\\\end{task})/s';
@@ -75,7 +75,7 @@ class LatexController extends Controller
                     return ''; // Replace with an empty string
                 }, $taskContent);
             }
-            
+
             $taskContents = preg_replace_callback($pattern, function($matches) use (&$filenames) {
                 return ''; // Replace with an empty string
             }, $taskContents);
@@ -90,15 +90,19 @@ class LatexController extends Controller
                     $taskContents[$index] = $equationTag . $taskContents[$index] . '\end{equation*}';
                 }
             }
-            
+
             // Extract the content between \begin{solution} and \end{solution}
             $solutionPattern = '/(begin{solution})(.*?)(\\\\end{solution})/s';
             preg_match_all($solutionPattern, $content, $solutionMatches);
-            $solutionContents = $solutionMatches[2]; 
+            $solutionContents = $solutionMatches[2];
+
+            $pattern = '/\\begin{equation*}\s(.?)\s*\\end{equation*}/s';
+            $replacement = '$1';
+            $solutionContents = preg_replace($pattern, $replacement, $solutionContents);
 
             $sectionPattern = '/(section)(.*?)(begin{task})/s';
             preg_match_all($sectionPattern, $content, $sectionMatches);
-            $sectionContents = $sectionMatches[2]; 
+            $sectionContents = $sectionMatches[2];
 
             // echo "ahoj";
             // echo $solutionContents;
@@ -112,7 +116,7 @@ class LatexController extends Controller
                 $pattern = '/\{(.*?)\}/'; // Regex pattern to match text within curly braces
                 if (preg_match($pattern, $sectionContents[$index], $matches)) {
                     $extractedText = $matches[1]; // Extracted text within curly braces
-                } 
+                }
 
                 $task->section = $extractedText;
                 $task->task = $taskContent;

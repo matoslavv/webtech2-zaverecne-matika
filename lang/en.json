@@ -19,5 +19,21 @@
     "view": "Show",
     "tasks": "Tasks",
     "progress": "In progress",
-    "submitted": "Submitted"
+    "submitted": "Submitted",
+    "select-file": "Select file",
+    "upload": "Upload",
+    "upload-latex": "Upload LaTeX",
+    "select-user": "Select user",
+    "select-access-date": "Select access interval",
+    "create-exercise-set": "Create exercise set",
+    "Dashboard": "Dashboard",
+    "Profile": "Profile",
+    "Logout": "Log Out",
+    "drop-file": "Drop file here",
+    "From": "From",
+    "To": "To",
+    "generate": "Generate",
+    "select-latex-file": "Select LaTeX file",
+    "max-points": "Maximum points",
+    "exercise-id": "Exercise set ID"
 }
