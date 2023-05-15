@@ -22,7 +22,7 @@ class ExerciseSetController extends Controller
         $fromDate = $request->input('from_date');
         $toDate = $request->input('to_date');
         
-        var_dump($userId, $selectedLatexFiles, $latexFilePoints, $fromDate, $toDate);
+        // var_dump($userId, $selectedLatexFiles, $latexFilePoints, $fromDate, $toDate);
               
 
         // Get the current date
@@ -52,7 +52,7 @@ class ExerciseSetController extends Controller
         }));
         
 
-        var_dump($nonNullPoints);
+        // var_dump($nonNullPoints);
 
         //Associate selected files with the exercise set
         foreach ($selectedLatexFiles as $index => $latexFileId) {
@@ -60,7 +60,7 @@ class ExerciseSetController extends Controller
 
             $maxPoints = $nonNullPoints[$index];
 
-            echo $index;
+            
 
             // Create an exercise set file record
             ExerciseSetFile::create([

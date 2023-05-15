@@ -63,7 +63,11 @@
                                             </div>
                                         @endforeach
                                     </div>
-                                    <button type="submit" class="btn btn-primary w-100">{{ __('generate') }}</button>
+                                    @if ($exerciseSet->state === 'closed')
+                                        <button type="submit" class="btn btn-primary w-100" disabled>{{ __('generate') }}</button>
+                                    @else
+                                        <button type="submit" class="btn btn-primary w-100">{{ __('generate') }}</button>
+                                    @endif
                                 </form>
 
                             </div>
