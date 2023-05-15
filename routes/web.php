@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LatexController;
 use App\Http\Controllers\ExerciseSetController;
 use App\Http\Controllers\ExerciseFileController;
+use App\Http\Controllers\AnswerController;
 
 use App\Models\User;
 use App\Models\Latex;
