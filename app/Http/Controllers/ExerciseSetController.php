@@ -69,7 +69,8 @@ class ExerciseSetController extends Controller
                 'max_points' => $maxPoints,
             ]);
         }
-     
-        return response()->json(['success' => 'File uploaded successfully.', 'taskContents' => $exerciseSet]);
+        
+        return redirect()->route('dashboard')->with('success', 'File uploaded successfully.');
+        // return response()->json(['success' => 'File uploaded successfully.', 'taskContents' => $exerciseSet]);
     }
 }
