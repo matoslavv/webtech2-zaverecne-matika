@@ -19,5 +19,15 @@
     "view": "Zobraziť",
     "tasks": "Úlohy",
     "progress": "Neodovzdané",
-    "submitted": "Odovzdané"
+    "submitted": "Odovzdané",
+    "select-file": "Zvoľte súbor",
+    "upload": "Nahraj",
+    "upload-latex": "Nahraj LaTeX",
+    "select-user": "Zvolte použivateľa",
+    "select-access-date": "Zvolte dátum prístupu",
+    "create-exercise-set": "Vytvoriť sadu úloh",
+    "Dashboard": "Nástenka",
+    "Profile": "Profil",
+    "Logout": "Odhlásiť sa",
+    "drop-file": "Vložte súbor"
 }

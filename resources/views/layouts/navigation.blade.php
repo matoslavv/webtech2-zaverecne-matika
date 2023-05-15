@@ -8,6 +8,11 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
+            <x-localization-select>
+
+            </x-localization-select>
+        </li>
+        <li class="nav-item">
             <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-nav-link>
@@ -24,12 +29,12 @@
                     </x-dropdown-link>
 
                     <!-- Authentication -->
-                    <form method="POST" action="{{ route('logout') }}">
+                    <form method="POST" action="{{ route('logout') }}" class="mb-0">
                         @csrf
                         <x-dropdown-link :href="route('logout')"
                                 onclick="event.preventDefault();
                                             this.closest('form').submit();">
-                            {{ __('Log Out') }}
+                            {{ __('Logout') }}
                         </x-dropdown-link>
                     </form>
                 </x-slot>
