@@ -13,7 +13,7 @@ class AnswerController extends Controller
     private $open_ai;
 
     function __construct() {
-        $this->open_ai = new OpenAi("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");
+        $this->open_ai = new OpenAi("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");
     }
 
     public function submitAnswer(Request $request) {
