@@ -105,7 +105,7 @@
                             <div class="form-check mb-3">
                                 <input class="form-check-input" type="checkbox" name="latex_files[]" value="{{ $latexFile->id }}" id="latex_file_{{ $latexFile->id }}">
                                 <label class="form-check-label" for="latex_file_{{ $latexFile->id }}">{{ $latexFile->name }}</label>
-                                <input type="number" class="form-control mt-1" name="latex_file_points[{{ $latexFile->id }}]" placeholder="Max Points" min="0" step="1">
+                                <input type="number" class="form-control mt-1" name="latex_file_points[{{ $latexFile->id }}]" placeholder="{{__('max-points')}}" min="0" step="1">
                             </div>
                         @endforeach
                     </div>

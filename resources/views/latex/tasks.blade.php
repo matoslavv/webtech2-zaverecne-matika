@@ -169,27 +169,21 @@
   <script src="{{ asset('src/app/js/latexGenerator.js')}}"></script>
   <link href="{{ asset('src/Fonts/TeX/font.css')}}" rel="stylesheet" type="text/css" charset="utf-8" />
   <link href="{{ asset('src/app/css/equationEditor.css')}}" rel="stylesheet" type="text/css" charset="utf-8" />
-    <x-slot name="header">
-        <h2 class="mt-3 mb-5">
-            {{ __('welcome') . " " . Auth::user()->name . " " . Auth::user()->surname }}
-        </h2>
-    </x-slot>
-
     <div class="container">
-        <h1>Exercise Set ID: {{ $exerciseSetId }}</h1>
-        <h2>Tasks:</h2>
+        <h1 class="mt-1 mb-2">{{__('exercise-id')}}: {{ $exerciseSetId }}</h1>
+        <h2>{{__('tasks')}}:</h2>
         @foreach ($tasks as $task)
             <div class="card mb-3">
                 <div class="card-body">
-                    <p class="card-text">{{ $task->task }}</p>
+                    <p class="card-text overflow-x-scroll">{{ $task->task }}</p>
                     @if ($task->image_name)
                         <img src="{{ asset('storage/images/' . $task->image_name) }}" alt="Task Image" class="img-fluid">
                     @endif
                     <form action="{{ route('submit_answer') }}" method="POST">
                         @csrf
                         <input type="hidden" name="task_id" value="{{ $task->id }}">
-                        <input type="hidden" name="latex_content" value="">
-                        <div class="input-group mb-3">
+                        <input type="hidden" name="latex_content" value=""  class="overflow-x-scroll">
+                        <div class="input-group mb-3 overflow-x-scroll">
                         <input id="hiddenFocusInput" style="width: 0; height: 0; opacity: 0; position: absolute; top: 0; left: 0;" type="text" autocapitalize="off" />
                     <div id="loadingMessageOuter" style="width: 234px; height: 64px;">
                     <div id="loadingMessage" class="fontSizeSmaller" style="width: 234px; height: 64px; position: fixed;"></div>
@@ -205,7 +199,7 @@
                             <li class="outerTab"><a href="#integrals">Integrals</a></li>
                             <li class="outerTab"><a href="#misc">Misc</a></li>
                         </ul>
-                    
+
                         <div class="tab-content" id="tab-content-top">
                             <div id="common" class="tab outer active">
                                 <img class="menuItem" id="stackedFractionButton" src="{{ asset('src/MenuImages/png/stackedFraction.png')}}">
@@ -219,7 +213,7 @@
                                 <span class="menuItem MathJax_Main" id="logButton" style="font-size: 45px;">log</span>
                                 <span class="menuItem MathJax_Main" id="lnButton" style="font-size: 45px;">ln</span>
                             </div>
-                    
+
                             <div id="brackets" class="tab outer">
                                 <ul class="inner-tab-links tab-links">
                                     <li class="innerTab active"><a href="#bracketsSingle">Single</a></li>
@@ -246,7 +240,7 @@
                                 </div>
                                 </div>
                             </div>
-                            
+
                             <div id="symbols" class="tab outer">
                                 <ul class="inner-tab-links tab-links">
                                     <li class="innerTab active"><a href="#symbolsOperators">Operators</a></li>
@@ -361,7 +355,7 @@
                                 </div>
                                 </div>
                             </div>
-                    
+
                             <div id="largeOperators" class="tab outer">
                                 <ul class="inner-tab-links tab-links">
                                     <li class="innerTab active"><a href="#largeOperatorsSum"><img class="innerTabImg" src="{{ asset('src/MenuImages/png/sumSymbol.png')}}"></a></li>
@@ -504,8 +498,8 @@
                                 <div class="menuItem" id="matrixButton" style="font-size: 35px; padding: 5px 5px; display: inline-block">Matrix</div>
                             </div>
                         </div>
-                    </div>
-                            <button type="submit" id="toLatex" class="btn btn-primary">Submit Answer</button>
+                        </div>
+                            <button type="submit" id="toLatex" class="btn btn-primary w-100 mt-3">{{__('confirm')}}</button>
                         </div>
                     </form>
                     <script>

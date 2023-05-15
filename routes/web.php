@@ -33,7 +33,6 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/change-locale/{locale}', [LocalizationController::class, 'changeLocale'])->name('change.locale');
 
 Route::get('/', function () {
-
     if (Auth::check()) {
         return redirect('/dashboard');
     } else {
@@ -74,7 +73,7 @@ Route::get('/dashboard', function () {
         ->join('latex', 'latex.id', '=', 'exercise_set_files.latex_file_id')
         ->select('exercise_set_files.id', 'latex.id as file_id', 'latex.name')
         ->get();
-    
+
         $exerciseSetFiles[$exerciseSet->id] = $files;
     }
 

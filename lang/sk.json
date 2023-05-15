@@ -33,5 +33,7 @@
     "From": "Od",
     "To": "Do",
     "generate": "Generuj",
-    "select-latex-file": "Zvolte LaTeX súbor"
+    "select-latex-file": "Zvolte LaTeX súbor",
+    "max-points": "Maximálny počet bodov",
+    "exercise-id": "Sada úloh s ID"
 }
