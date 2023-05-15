@@ -29,5 +29,9 @@
     "Dashboard": "Nástenka",
     "Profile": "Profil",
     "Logout": "Odhlásiť sa",
-    "drop-file": "Vložte súbor"
+    "drop-file": "Vložte súbor",
+    "From": "Od",
+    "To": "Do",
+    "generate": "Generuj",
+    "select-latex-file": "Zvolte LaTeX súbor"
 }

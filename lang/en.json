@@ -29,5 +29,9 @@
     "Dashboard": "Dashboard",
     "Profile": "Profile",
     "Logout": "Log Out",
-    "drop-file": "Drop file here"
+    "drop-file": "Drop file here",
+    "From": "From",
+    "To": "To",
+    "generate": "Generate",
+    "select-latex-file": "Select LaTeX file"
 }

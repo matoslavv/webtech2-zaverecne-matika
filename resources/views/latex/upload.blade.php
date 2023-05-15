@@ -1,9 +1,5 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="mt-3 mb-5">
-            {{ __('welcome') . " " . Auth::user()->name . " " . Auth::user()->surname }}
-        </h2>
-    </x-slot>
+    
 </x-app-layout>
 
 <!DOCTYPE html>
@@ -28,9 +24,8 @@
 </head>
 <body>
     <div class="container">
-        <p><h1>Laravel 9 Multiple Upload Images using Dropzone drag and drop</h1></p>
+        <p><h1 class="text-center mb-3">{{__('upload-latex')}}</h1></p>
     </div>
-
         <form method="post" action="{{route('latex.upload.post')}}" enctype="multipart/form-data" class="dropzone" id="dropzone">
             @csrf
             <div class="dz-message" data-dz-message><span>{{__('drop-file')}}</span></div>
@@ -55,23 +50,5 @@
                 }
             };
         </script>
-
-    <div class="latex-container">
-
-
-    \begin{equation*}
-        y(t)=\left[ \dfrac{3}{4}-\dfrac{3}{4}e^{-\frac{4}{5}(t-7)}-\dfrac{3}{5}(t-7)e^{-\frac{4}{5}(t-7)} \right] \eta(t-7)
-    \end{equation*}
-
-    \begin{equation*}
-        Nájdite prenosovú funkciu F(s)=\dfrac{Y(s)}{W(s)} pre systém opísaný blokovou schémou: \\
-    \end{equation*}
-
-    \begin{equation*}
-        Nájdite prenosovú funkciu F(s)=\dfrac{Y(s)}{W(s)} pre systém opísaný blokovou schémou: \\
-    \end{equation*}
-
-
-    </div>
 </body>
 </html>
