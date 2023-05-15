@@ -32,46 +32,45 @@
     </div>
 
         <form method="post" action="{{route('latex.upload.post')}}" enctype="multipart/form-data" class="dropzone" id="dropzone">
-        @csrf
-        </form>   
+            @csrf
+            <div class="dz-message" data-dz-message><span>{{__('drop-file')}}</span></div>
+        </form>
 
-    <script type="text/javascript">
-    Dropzone.options.dropzone =
-    {
-        maxFilesize: 12,
-        renameFile: function(file) {
-            var dt = new Date();
-            var time = dt.getTime();
-            return time+file.name;
-        },
-        acceptedFiles: ".jpeg,.jpg,.png,.gif,.tex",
-        addRemoveLinks: true,
-        timeout: 5000,
-        success: function(file, response) {
-            console.log(response);
-        },
-        error: function(file, response){
-            return false;
-        }
-    };
+        <script type="text/javascript">
+            Dropzone.options.dropzone = {
+                maxFilesize: 12,
+                renameFile: function(file) {
+                    var dt = new Date();
+                    var time = dt.getTime();
+                    return time+file.name;
+                },
+                acceptedFiles: ".jpeg,.jpg,.png,.gif,.tex",
+                addRemoveLinks: true,
+                timeout: 5000,
+                success: function(file, response) {
+                    console.log(response);
+                },
+                error: function(file, response){
+                    return false;
+                }
+            };
+        </script>
 
-</script>
+    <div class="latex-container">
 
-    <div>
-        
 
     \begin{equation*}
         y(t)=\left[ \dfrac{3}{4}-\dfrac{3}{4}e^{-\frac{4}{5}(t-7)}-\dfrac{3}{5}(t-7)e^{-\frac{4}{5}(t-7)} \right] \eta(t-7)
     \end{equation*}
 
     \begin{equation*}
-        Nájdite prenosovú funkciu F(s)=\dfrac{Y(s)}{W(s)} pre systém opísaný blokovou schémou: \\ 
+        Nájdite prenosovú funkciu F(s)=\dfrac{Y(s)}{W(s)} pre systém opísaný blokovou schémou: \\
     \end{equation*}
 
     \begin{equation*}
-        Nájdite prenosovú funkciu F(s)=\dfrac{Y(s)}{W(s)} pre systém opísaný blokovou schémou: \\ 
+        Nájdite prenosovú funkciu F(s)=\dfrac{Y(s)}{W(s)} pre systém opísaný blokovou schémou: \\
     \end{equation*}
-    
+
 
     </div>
 </body>

@@ -54,7 +54,7 @@
                                     @csrf
                                     <input type="hidden" name="exercise_set_id" value="{{ $exerciseSet->id }}">
                                     <div class="form-group">
-                                        <label for="file">Choose Files:</label>
+                                        <label for="file">{{ __('select-file') }}: </label>
                                         @foreach ($exerciseSetFiles[$exerciseSet->id] as $file)
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="file[]" value="{{ $file->file_id }}">
@@ -76,26 +76,26 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h4 class="dashboard-title">{{__('Upload LaTex File')}}</h4>
-                <a href="{{ route('latex.upload') }}" class="btn btn-primary">{{__('Upload LaTeX')}}</a>
+                <h4 class="dashboard-title">{{__('upload-latex')}}</h4>
+                <a href="{{ route('latex.upload') }}" class="btn btn-primary">{{__('upload')}}</a>
             </div>
         </div>
-        
+
         <div class="row mt-4">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <form method="POST" action="{{ route('exercise_sets.store') }}">
                     @csrf
-                    <div class="form-group m-2">
-                        <label for="user">Select User:</label>
+                    <div class="form-group my-2">
+                        <label class="mb-2" for="user">{{__('select-user')}}:</label>
                         <select class="form-control" name="user" id="user">
                             @foreach($users as $user)
                                 <option value="{{ $user->id }}">{{ $user->name }}</option>
                             @endforeach
                         </select>
                     </div>
-                    
-                    <div class="form-group m-2">
-                        <label>Select LaTeX Files:</label>
+
+                    <div class="form-group mt-4 mb-2">
+                        <label class="mb-2">Select LaTeX Files:</label>
                         @foreach($latexFiles as $latexFile)
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="latex_files[]" value="{{ $latexFile->id }}" id="latex_file_{{ $latexFile->id }}">
@@ -104,11 +104,11 @@
                             </div>
                         @endforeach
                     </div>
-                    
-                    <div class="form-group m-2">
-                        <label for="access_interval">Access Interval:</label>
+
+                    <div class="form-group mt-4 mb-2">
+                        <label class="mb-2" for="access_interval">{{__('select-access-date')}}:</label>
                         <div class="row">
-                            <div class="col">
+                            <div class="col mb-2 mb-sm-0">
                                 <input type="date" class="form-control" name="from_date" id="from_date" placeholder="From Date">
                             </div>
                             <div class="col">
@@ -116,8 +116,8 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <button type="submit" class="btn btn-primary">Create Exercise Set</button>
+
+                    <button type="submit" class="btn btn-primary mt-3 w-100">{{__('create-exercise-set')}}</button>
                 </form>
             </div>
         </div>

@@ -15,3 +15,21 @@
         margin-right: 15px;
     }
 }
+
+.latex-container {
+    overflow-x: scroll;
+}
+
+.dropzone {
+    width: 80%;
+    margin: 25px auto;
+    border-style: dashed !important;
+
+    @media screen and (min-width: 900px) {
+        width: 60%;
+    }
+}
+
+.dz-message {
+    font-size: 20px;
+}
