@@ -34,35 +34,36 @@
                 @endforeach
             </div>
         </div> -->
-        <div>
+        {{-- <div>
             <h4 class="dashboard-title d-inline-block">{{ __('generate-tasks') }}</h4>
             <x-button>{{ __('generate-button') }}</x-button>
-        </div>
+        </div> --}}
 
         <div class="mt-4">
-            <h4 class="dashboard-title">{{ __('tasks') }}</h4>
+            <h3 class="dashboard-title mb-3">{{ __('tasks') }}</h3>
             <div class="row">
                 @foreach ($exerciseSets as $exerciseSet)
-                    <div class="col-md-4">
-                        <div class="card @if ($exerciseSet->state === 'open') border-success @else border-danger @endif">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $exerciseSet->name }}</h5>
-                                <p class="card-text">{{ __('From') }}: {{ $exerciseSet->from_date }}</p>
-                                <p class="card-text">{{ __('To') }}: {{ $exerciseSet->to_date }}</p>
+                    <div class="col-xl-4 col-md-6 mb-4">
+                        <div class="card border-3 @if ($exerciseSet->state === 'open') border-success @else border-danger @endif h-245">
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <div class="">
+                                    <p class="card-text">{{ __('From') }}: {{ $exerciseSet->from_date }}</p>
+                                    <p class="card-text">{{ __('To') }}: {{ $exerciseSet->to_date }}</p>
+                                </div>
 
-                                <form action="{{ route('exercise_files.generate') }}" method="POST">
+                                <form action="{{ route('exercise_files.generate') }}" method="POST" class="mb-0">
                                     @csrf
                                     <input type="hidden" name="exercise_set_id" value="{{ $exerciseSet->id }}">
-                                    <div class="form-group">
+                                    <div class="form-group mb-3">
                                         <label for="file">{{ __('select-file') }}: </label>
                                         @foreach ($exerciseSetFiles[$exerciseSet->id] as $file)
-                                            <div class="form-check">
+                                            <div class="form-check my-1">
                                                 <input class="form-check-input" type="checkbox" name="file[]" value="{{ $file->file_id }}">
                                                 <label class="form-check-label" for="file">{{ $file->name }}</label>
                                             </div>
                                         @endforeach
                                     </div>
-                                    <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+                                    <button type="submit" class="btn btn-primary w-100">{{ __('generate') }}</button>
                                 </form>
 
                             </div>
@@ -95,12 +96,12 @@
                     </div>
 
                     <div class="form-group mt-4 mb-2">
-                        <label class="mb-2">Select LaTeX Files:</label>
+                        <label class="mb-2">{{__('select-latex-file')}}:</label>
                         @foreach($latexFiles as $latexFile)
-                            <div class="form-check">
+                            <div class="form-check mb-3">
                                 <input class="form-check-input" type="checkbox" name="latex_files[]" value="{{ $latexFile->id }}" id="latex_file_{{ $latexFile->id }}">
                                 <label class="form-check-label" for="latex_file_{{ $latexFile->id }}">{{ $latexFile->name }}</label>
-                                <input type="number" class="form-control" name="latex_file_points[{{ $latexFile->id }}]" placeholder="Max Points" min="0" step="1">
+                                <input type="number" class="form-control mt-1" name="latex_file_points[{{ $latexFile->id }}]" placeholder="Max Points" min="0" step="1">
                             </div>
                         @endforeach
                     </div>
