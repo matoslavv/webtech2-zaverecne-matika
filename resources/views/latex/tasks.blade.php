@@ -522,11 +522,9 @@
                                 latex_content: latexContent
                             },
                             success: function(response) {
-                                // Handle the response from the server
                                 console.log(response);
                             },
                             error: function(xhr, status, error) {
-                                // Handle errors
                                 console.log(error);
                             }
                         });
