@@ -42,3 +42,14 @@ RUN php artisan config:cache && \
     chmod 777 -R /var/www/html/storage/ && \
     chown -R www-data:www-data /var/www/ && \
     a2enmod rewrite
+
+FROM mpsorg/sass-compiler AS sass-compiler
+
+COPY sass /sass
+RUN mkdir /css
+RUN sass /sass:/css
+
+
+FROM acme/app
+
+COPY --from=sass-compiler /css /acme/app/public/css
