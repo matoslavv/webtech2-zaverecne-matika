@@ -9,11 +9,12 @@ use Orhanerday\OpenAi\OpenAi;
 
 
 class AnswerController extends Controller
-{
+{   
     private $open_ai;
 
     function __construct() {
-        $this->open_ai = new OpenAi("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");
+        $apiKey = config('api.api_key');
+        $this->open_ai = new OpenAi($apiKey);
     }
 
     public function submitAnswer(Request $request) {
