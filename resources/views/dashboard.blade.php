@@ -84,6 +84,10 @@
                 <h4 class="dashboard-title">{{__('upload-latex')}}</h4>
                 <a href="{{ route('latex.upload') }}" class="btn btn-primary">{{__('upload')}}</a>
             </div>
+            <div class="col-md-6">
+                <h4 class="dashboard-title">{{__('show-students')}}</h4>
+                <a href="{{ route('students.show') }}" class="btn btn-primary">{{__('show')}}</a>
+            </div>
         </div>
 
         <div class="row mt-4">

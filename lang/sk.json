@@ -35,5 +35,13 @@
     "generate": "Generuj",
     "select-latex-file": "Zvolte LaTeX súbor",
     "max-points": "Maximálny počet bodov",
-    "exercise-id": "Sada úloh s ID"
+    "exercise-id": "Sada úloh s ID",
+    "show": "Zobraziť",
+    "show-students": "Zobraziť študentov",
+    "all-students": "Všetci študenti",
+    "view-tasks": "Zobraziť zadania",
+    "action": "Akcia",
+    "excersise-sets-for": "Zadanie pre: ",
+    "points": "Body",
+    "state": "Stav"
 }

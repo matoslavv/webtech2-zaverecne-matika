@@ -35,5 +35,14 @@
     "generate": "Generate",
     "select-latex-file": "Select LaTeX file",
     "max-points": "Maximum points",
-    "exercise-id": "Exercise set ID"
+    "exercise-id": "Exercise set ID",
+    "show": "Show",
+    "show-students": "Show students",
+    "all-students": "All students",
+    "view-tasks": "View tasks",
+    "action": "Action",
+    "excersise-sets-for": "Excersise sets for: ",
+    "points": "Points",
+    "state": "State"
+    
 }

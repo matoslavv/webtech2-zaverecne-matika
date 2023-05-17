@@ -7,6 +7,8 @@ use App\Http\Controllers\LatexController;
 use App\Http\Controllers\ExerciseSetController;
 use App\Http\Controllers\ExerciseFileController;
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudentTaskController;
 
 use App\Models\User;
 use App\Models\Latex;
@@ -100,6 +102,11 @@ Route::post('/exercise_sets', [ExerciseSetController::class, 'store'])->name('ex
 Route::get('/exercise-files/{id}', [ExerciseFileController::class, 'show'])->name('exercise_files.show');
 Route::post('/exercise_files/generate', [ExerciseFileController::class, 'generate'])->name('exercise_files.generate');
 Route::post('/submit-answer', [AnswerController::class, 'submitAnswer'])->name('submit_answer');
+
+Route::get('/students', [StudentController::class, 'index'])->name('students.show');
+Route::get('/students/{student}/tasks', [StudentController::class, 'displayTasks'])->name('student-tasks.index');
+
+
 
 
 
