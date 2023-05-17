@@ -43,6 +43,6 @@
     "action": "Action",
     "excersise-sets-for": "Excersise sets for: ",
     "points": "Points",
-    "state": "State"
-    
+    "state": "State",
+    "documentation": "Documentation"
 }

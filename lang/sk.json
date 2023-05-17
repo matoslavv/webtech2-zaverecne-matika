@@ -43,5 +43,6 @@
     "action": "Akcia",
     "excersise-sets-for": "Zadanie pre: ",
     "points": "Body",
-    "state": "Stav"
+    "state": "Stav",
+    "documentation": "Dokumentácia"
 }

@@ -111,6 +111,9 @@ Route::get('/students/{student}/tasks', [StudentController::class, 'displayTasks
 
 
 
+Route::get('/documentation', function () {
+    return view('documentation');
+})->name('documentation');
 
 
 
