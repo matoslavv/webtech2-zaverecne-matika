@@ -92,7 +92,7 @@
 
         <div class="row mt-4">
             <div class="col-md-12">
-                <form method="POST" action="{{ route('exercise_sets.store') }}" class="mb-5">
+                <form method="POST" action="{{ route('exercise_sets.store') }}">
                     @csrf
                     <div class="form-group my-2">
                         <label class="mb-2" for="user">{{__('select-user')}}:</label>

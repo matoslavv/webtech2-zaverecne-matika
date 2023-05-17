@@ -11,20 +11,21 @@
 </head>
 <body>
    
-    <div id="documentation">
-        @if (Auth::user()->role == "Student")
-        <p>Documentation for Student</p>
-        <p>After logging in, the student sees his assigned examples given by the teacher, if they are green they are available red they are unavailable (planned).
-            After assigning examples, an example can be generated
-        </p>
+    <div class="container">
+        <div id="documentation">
+            @if (Auth::user()->role == "Student")
+            <p class="mt-4">Documentation for Student</p>
+            <p>After logging in, the student sees their assigned examples given by the teacher. If they are green, they are available; if they are red, they are unavailable (planned). After assigning examples, an example can be generated.</p>
 
-        @elseif (Auth::user()->role == "Teacher")
-        <p>Documentation for Teacher</p>
-        <p>After logging in, the teacher will see options for students to add examples to.The teacher can upload new latex files</p>
-         @endif
+            @elseif (Auth::user()->role == "Teacher")
+            <p class="mt-4">Documentation for Teacher</p>
+            <p>After logging in, the teacher will see options for students to add examples to. The teacher can upload new LaTeX files.</p>
+            @endif
+        </div>
 
+        <button class="btn btn-primary mt-4" onclick="createPDF()">{{ __('click') }}</button> 
     </div>
-    <button onclick="createPDF()">click</button> 
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
 
