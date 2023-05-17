@@ -101,9 +101,9 @@ Route::get('/exercise-files/{id}', [ExerciseFileController::class, 'show'])->nam
 Route::post('/exercise_files/generate', [ExerciseFileController::class, 'generate'])->name('exercise_files.generate');
 Route::post('/submit-answer', [AnswerController::class, 'submitAnswer'])->name('submit_answer');
 
-
-
-
+Route::get('/documentation', function () {
+    return view('documentation');
+})->name('documentation');
 
 
 

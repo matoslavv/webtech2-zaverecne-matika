@@ -35,5 +35,6 @@
     "generate": "Generate",
     "select-latex-file": "Select LaTeX file",
     "max-points": "Maximum points",
-    "exercise-id": "Exercise set ID"
+    "exercise-id": "Exercise set ID",
+    "documentation": "Documentation"
 }

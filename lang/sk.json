@@ -35,5 +35,6 @@
     "generate": "Generuj",
     "select-latex-file": "Zvolte LaTeX súbor",
     "max-points": "Maximálny počet bodov",
-    "exercise-id": "Sada úloh s ID"
+    "exercise-id": "Sada úloh s ID",
+    "documentation": "Dokumentácia"
 }
