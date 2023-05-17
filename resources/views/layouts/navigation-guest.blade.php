@@ -1,5 +1,6 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  
   <div class="container">
     <a class="navbar-brand" href="#">{{ config('app.name') }}</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">

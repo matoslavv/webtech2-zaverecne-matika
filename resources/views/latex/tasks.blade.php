@@ -1,9 +1,12 @@
 <x-app-layout>
+
+<link href="{{ asset('app.css') }}" rel="stylesheet" />
+
 <script src="{{ asset('src/lib/jquery-2.0.0.js')}}"></script>
   <script src="{{ asset('src/lib/underscore-1.6.0.js')}}"></script>
   <script src="{{ asset('src/lib/mousetrap-1.4.6.js')}}"></script>
   <script src="{{ asset('src/lib/spin.min.js')}}"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
   <script src="{{ asset('src/app/js/property.js')}}"></script>
   <script src="{{ asset('src/app/js/init.js')}}"></script>
   <script src="{{ asset('src/app/js/fontMetrics.js')}}"></script>
