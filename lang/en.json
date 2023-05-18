@@ -45,5 +45,10 @@
     "points": "Points",
     "state": "State",
     "documentation": "Documentation",
-    "click": "Click"
+    "click": "Click",
+    "generatePdf": "Generate PDF",
+    "formTechearError" : "You did not enter the body of the assigned assignments",
+    "formTechearError1" : "You did not enter the correct date",
+    "formTechearError2" : "You have not selected any task",
+    "formStudentError" : "You have not selected a job to generate"
 }

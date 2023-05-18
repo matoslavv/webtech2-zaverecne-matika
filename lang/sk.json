@@ -45,5 +45,10 @@
     "points": "Body",
     "state": "Stav",
     "documentation": "Dokumentácia",
-    "click": "Klikni"
+    "click": "Klikni",
+    "generatePdf": "Generuj PDF",
+    "formTechearError" : "Nezadali ste body pridelenym zadaniam",
+    "formTechearError1" : "Nezadali ste spravne datum",
+    "formTechearError2" : "Nevybrali ste ziadnu úlohu",
+    "formStudentError" : "Nevybrali ste úlohu na generovanie"
 }

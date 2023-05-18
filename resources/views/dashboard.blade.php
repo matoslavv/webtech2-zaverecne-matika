@@ -55,13 +55,13 @@
                                     <p class="card-text">{{ __('max-points') }}: {{ $exerciseSet->max_points }}</p>
                                 </div>
 
-                                <form action="{{ route('exercise_files.generate') }}" method="POST" class="mb-0">
+                                <form action="{{ route('exercise_files.generate') }}" method="POST" onsubmit="return validateFormStudent('{{ $exerciseSet->id }}')"  class="mb-0">
                                     @csrf
                                     <input type="hidden" name="exercise_set_id" value="{{ $exerciseSet->id }}">
                                     <div class="form-group mb-3">
                                         <label for="file">{{ __('select-file') }}: </label>
                                         @foreach ($exerciseSetFiles[$exerciseSet->id] as $file)
-                                            <div class="form-check my-1">
+                                            <div id="{{ $exerciseSet->id }}" class="form-check my-1">
                                                 <input class="form-check-input" type="checkbox" name="file[]" value="{{ $file->file_id }}">
                                                 <label class="form-check-label" for="file">{{ $file->name }}</label>
                                             </div>
@@ -96,7 +96,7 @@
 
         <div class="row mt-4">
             <div class="col-md-12">
-                <form method="POST" action="{{ route('exercise_sets.store') }}" class="mb-5">
+                <form method="POST" action="{{ route('exercise_sets.store') }}" onsubmit="return validateFormTeacher()" class="mb-5">
                     @csrf
                     <div class="form-group my-2">
                         <label class="mb-2" for="user">{{__('select-user')}}:</label>
@@ -113,7 +113,7 @@
                             <div class="form-check mb-3">
                                 <input class="form-check-input" type="checkbox" name="latex_files[]" value="{{ $latexFile->id }}" id="latex_file_{{ $latexFile->id }}">
                                 <label class="form-check-label" for="latex_file_{{ $latexFile->id }}">{{ $latexFile->name }}</label>
-                                <input type="number" class="form-control mt-1" name="latex_file_points[{{ $latexFile->id }}]" placeholder="{{__('max-points')}}" min="0" step="1">
+                                <input type="number" id="latex_file_input_{{ $latexFile->id }}" class="form-control mt-1" name="latex_file_points[{{ $latexFile->id }}]" placeholder="{{__('max-points')}}" min="0" step="1">
                             </div>
                         @endforeach
                     </div>
@@ -143,3 +143,46 @@
 
 
 </x-app-layout>
+<script>
+function validateFormTeacher() {
+    var markedCheckbox = document.querySelectorAll('input[type="checkbox"]:checked');
+    if(markedCheckbox.length == 0){
+            alert("{{__('formTechearError2')}}");
+            return false
+        }
+    for (var checkbox of markedCheckbox) {
+        let id = checkbox.id.split("_")[2];
+        var input=document.getElementById("latex_file_input_"+id);
+        if(input.value=== ""){
+            alert("{{__('formTechearError')}}");
+            return false
+        }
+    }
+    var dates = document.querySelectorAll('input[type="date"]');
+    for (var date of dates) {
+        if(date.value=== ""){
+            alert("{{__('formTechearError1')}}");
+            return false
+        }
+    }
+    if(dates[0].value > dates[1].value){
+        if(date.value=== ""){
+            alert("{{__('formTechearError1')}}");
+            return false
+        }
+    }
+}
+
+function validateFormStudent(id) {
+    if(document.getElementById(id)){ 
+        let children = document.getElementById(id).children;
+        for (var child of children) {
+            if(child.type === "checkbox"){
+            if(child.checked) return true;
+            }
+        }
+    }
+    alert("{{__('formStudentError')}}");
+    return false;
+}
+</script>
