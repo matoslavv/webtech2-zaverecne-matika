@@ -1,6 +1,8 @@
 <x-app-layout>
 
 <link href="{{ asset('app.css') }}" rel="stylesheet" />
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 
 <script src="{{ asset('src/lib/jquery-2.0.0.js')}}"></script>
   <script src="{{ asset('src/lib/underscore-1.6.0.js')}}"></script>
@@ -176,13 +178,14 @@
         <h1 class="mt-1 mb-2">{{__('exercise-id')}}: {{ $exerciseSetId }}</h1>
         <h2>{{__('tasks')}}:</h2>
         @foreach ($tasks as $task)
-            <div class="card mb-3">
+            <div class="card mb-3" id="card-{{ $task->id }}">
                 <div class="card-body">
                     <p class="card-text overflow-x-scroll">{{ $task->task }}</p>
                     @if ($task->image_name)
                         <img src="{{ asset('storage/images/' . $task->image_name) }}" alt="Task Image" class="img-fluid">
                     @endif
-                    <form action="{{ route('submit_answer') }}" method="POST">
+                    <!-- <form action="{{ route('submit_answer') }}" method="POST"> -->
+                    <form >
                         @csrf
                         <input type="hidden" name="task_id" value="{{ $task->id }}">
                         <input type="hidden" name="latex_content" value=""  class="overflow-x-scroll">
@@ -502,24 +505,47 @@
                             </div>
                         </div>
                         </div>
-                            <button type="submit" id="toLatex" class="btn btn-primary w-100 mt-3">{{__('confirm')}}</button>
+                        <!-- <button type="submit" id="toLatex" class="btn btn-primary w-100 mt-3">{{__('confirm')}}</button> -->
                         </div>
+                        <button type="button" id="toLatex" class="btn btn-primary w-100 mt-3">{{__('confirm')}}</button>
                     </form>
                     <script>
                     $('#toLatex').on('click', function() {
                         var jsonObj = $('.eqEdEquation').data('eqObject').buildJsonObj();
                         var latexContent = generateLatex(jsonObj);
+                        console.log(latexContent);
 
                         $('input[name="latex_content"]').val(latexContent);
+
+                        $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                        });
+
 
                         $.ajax({
                             url: '{{ route("submit_answer") }}',
                             type: 'POST',
                             data: {
-                                latex_content: latexContent
+                                latex_content: latexContent,
+                                //  _token: '{{csrf_token()}}',
+                                task_id: '{{$task->id}}',
+                                set_id: '{{$exerciseSetId}}'
                             },
                             success: function(response) {
+                                console.log((response.message));
+
+                                // var card = $("card-{{ $task->id }}");
+                                var card = document.getElementById("card-{{ $task->id }}");
                                 console.log(response);
+                                if(response.message === "yes"){
+                                    card.style.borderColor = "green";
+                                    card.style.background = "#A8FFB2";
+                                }else{
+                                    card.style.borderColor = "red";
+                                    card.style.background = "#FF6759"
+                                }
                             },
                             error: function(xhr, status, error) {
                                 console.log(error);

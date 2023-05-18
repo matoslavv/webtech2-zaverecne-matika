@@ -44,11 +44,15 @@
             <div class="row">
                 @foreach ($exerciseSets as $exerciseSet)
                     <div class="col-xl-4 col-md-6 mb-4">
-                        <div class="card border-3 @if ($exerciseSet->state === 'open') border-success @else border-danger @endif h-245">
+                        <div class="card border-3 @if ($exerciseSet->state === 'open') border-success @else border-danger @endif " style="height: 400px">
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <div class="">
                                     <p class="card-text">{{ __('From') }}: {{ $exerciseSet->from_date }}</p>
                                     <p class="card-text">{{ __('To') }}: {{ $exerciseSet->to_date }}</p>
+                                </div>
+                                <div class="">
+                                    <p class="card-text">{{ __('points') }}: {{ $exerciseSet->points }}</p>
+                                    <p class="card-text">{{ __('max-points') }}: {{ $exerciseSet->max_points }}</p>
                                 </div>
 
                                 <form action="{{ route('exercise_files.generate') }}" method="POST" class="mb-0">
