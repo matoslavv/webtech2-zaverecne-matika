@@ -182,7 +182,7 @@
                 <div class="card-body">
                     <p class="card-text overflow-x-scroll">{{ $task->task }}</p>
                     @if ($task->image_name)
-                        <img src="{{ asset('storage/images/' . $task->image_name) }}" alt="Task Image" class="img-fluid">
+                        <img src="{{ asset('images/' . $task->image_name) }}" alt="Task Image" class="img-fluid">
                     @endif
                     <!-- <form action="{{ route('submit_answer') }}" method="POST"> -->
                     <form >

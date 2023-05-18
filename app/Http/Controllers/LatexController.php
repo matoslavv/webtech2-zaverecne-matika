@@ -31,7 +31,15 @@ class LatexController extends Controller
             // $fileName = preg_replace('/^\d{14}/', '', $originalFileName);
             $fileName = substr($originalFileName, 13);
 
-            $path = $file->storeAs('public/images', $fileName, 'local');
+            // $path = $file->storeAs('images', $fileName, 'local');
+            // $path = $file->storeAs('site165.webte.fei.stuba.sk/images', $fileName);
+            
+            $desPath = public_path('/images');
+            $path = $file->move($desPath,$fileName); 
+
+            // $path = $file->storeAs('site165.webte.fei.stuba.sk/zav/public/images', $fileName, 'local');
+
+          
 
 
             // Save the original filename and image file path to the database
@@ -40,7 +48,7 @@ class LatexController extends Controller
             // $uploadedFile->image_path = $path;
             // $uploadedFile->save();
 
-            return response()->json(['success' => 'File uploaded successfully.', 'taskContents' => $originalFileName]);
+            return response()->json(['success' => 'File uploaded successfully.', 'taskContents' => $originalFileName,'path'=>$path]);
         }else{
             // Read the content of the file
             $content = $file->get();
