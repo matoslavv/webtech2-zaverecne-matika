@@ -58,10 +58,11 @@
                                 <form action="{{ route('exercise_files.generate') }}" method="POST" onsubmit="return validateFormStudent('{{ $exerciseSet->id }}')"  class="mb-0">
                                     @csrf
                                     <input type="hidden" name="exercise_set_id" value="{{ $exerciseSet->id }}">
-                                    <div class="form-group mb-3">
+                                    <div id="{{ $exerciseSet->id }}" class="form-group mb-3">
                                         <label for="file">{{ __('select-file') }}: </label>
+
                                         @foreach ($exerciseSetFiles[$exerciseSet->id] as $file)
-                                            <div id="{{ $exerciseSet->id }}" class="form-check my-1">
+                                            <div class="form-check my-1">
                                                 <input class="form-check-input" type="checkbox" name="file[]" value="{{ $file->file_id }}">
                                                 <label class="form-check-label" for="file">{{ $file->name }}</label>
                                             </div>
@@ -177,9 +178,14 @@ function validateFormStudent(id) {
     if(document.getElementById(id)){ 
         let children = document.getElementById(id).children;
         for (var child of children) {
-            if(child.type === "checkbox"){
-            if(child.checked) return true;
-            }
+            if(child.children.length!=0){
+                let checkboxChildren = child.children
+                for (var chl of checkboxChildren) {
+                    if(chl.type === "checkbox"){
+                        if(chl.checked) return true;
+                    }
+                 }
+            }  
         }
     }
     alert("{{__('formStudentError')}}");
