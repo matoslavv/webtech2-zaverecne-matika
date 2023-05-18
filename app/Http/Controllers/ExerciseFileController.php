@@ -30,17 +30,15 @@ class ExerciseFileController extends Controller
             $task = Task::where('latex_id', $fileId)->inRandomOrder()->first();
             if ($task) {
                 $tasks[] = $task;
-        
                 // Retrieve the max_points value from the exercise_set_files table
-                $maxPoints = ExerciseSetFile::where('latex_file_id', $fileId)->value('max_points');
-               
+                $maxPoints = ExerciseSetFile::where('latex_file_id', $fileId)->value('max_points'); 
                 $maxPointsTotal += $maxPoints ?? 0;
             }
         }
         
         // Update the max_points column in the exercise_sets table
         $exerciseSet = ExerciseSet::find($exerciseSetId);
-        $exerciseSet->max_points = $maxPointsTotal;
+        $exerciseSet->max_points = $exerciseSet->max_points + $maxPointsTotal;
         $exerciseSet->save();
         
         // Pass the exercise set ID and tasks to the view
